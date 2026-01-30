@@ -17,8 +17,11 @@ export default async function handler(req, res) {
     await certificadoDb(dados);
     const cert = await buscarDadosCertificado(dados.userId, dados.cursoId);
 
-    const pdfPath = path.resolve(__dirname, "../../../certificado.pdf");
-    const pdfBaseBytes = fs.readFileSync(pdfPath);
+   // const pdfPath = path.resolve(__dirname, "../../../certificado.pdf");
+    //https://newworldcertificado.netlify.app/certificado.pdf
+  //  const pdfBaseBytes = fs.readFileSync(pdfPath);
+    const response = await fetch("https://newworldcertificado.netlify.app/certificado.pdf"); 
+    const pdfBaseBytes = await response.arrayBuffer();
 
     const finalPdfBytes = await gerarCertificado({
       pdfBaseBytes,
