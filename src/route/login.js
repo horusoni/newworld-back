@@ -98,24 +98,23 @@ res.cookie("tokenAdmin", token, {
  * LOGOUT (USER + ADMIN)
  */
 export function logout(req, res) {
- res.cookie("token", token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  path: "/"
-});
-;
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,        // igual ao login
+    sameSite: "None",    // igual ao login
+    path: "/"            // igual ao login
+  });
 
- res.cookie("tokenAdmin", token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  path: "/"
-});
-
+  res.clearCookie("tokenAdmin", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    path: "/"
+  });
 
   return res.status(200).json({ message: "Logout realizado" });
 }
+
 
 /**
  * QUEM SOU EU (USER)
