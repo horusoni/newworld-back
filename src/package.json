@@ -1,0 +1,24 @@
+{
+  "name": "ead_new_world",
+  "version": "1.0.0",
+  "description": "online platoform for classes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Gilberto Costa",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.0.0",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^7.0.12",
+    "pdf-lib": "^1.17.1"
+  }
+}
