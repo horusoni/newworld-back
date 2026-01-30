@@ -40,12 +40,13 @@ export async function login(req, res) {
     { expiresIn: "1h" }
   );
 
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: false, // true somente em HTTPS
-    sameSite: "Lax",
-    path: "/"
-  });
+ res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // precisa ser true em produção (HTTPS)
+  sameSite: "None",    // permite envio entre domínios diferentes
+  path: "/"
+});
+
 
   const mail = formatEmail(email);
   mailLog(mail);
