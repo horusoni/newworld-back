@@ -28,7 +28,7 @@ const PORT = 4444;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://192.168.100.12:5500", // 🔴 origem EXATA do front
+  origin: "https://fundamentals-production-publishing-jets.trycloudflare.com/", // 🔴 origem EXATA do front
   credentials: true               // 🔴 obrigatório para cookies
 }));
 
