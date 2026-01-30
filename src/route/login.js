@@ -80,12 +80,13 @@ export async function loginAdmin(req, res) {
     { expiresIn: "1h" }
   );
 
-  res.cookie("tokenAdmin", token, {
-    httpOnly: true,
-    secure: false,
-    sameSite: "Lax",
-    path: "/"
-  });
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // precisa ser true em produção (HTTPS)
+  sameSite: "None",    // permite envio entre domínios diferentes
+  path: "/"
+});
+
 
   const mail = formatEmail(email);
   mailLog(mail);
