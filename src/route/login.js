@@ -80,7 +80,7 @@ export async function loginAdmin(req, res) {
     { expiresIn: "1h" }
   );
 
-res.cookie("token", token, {
+res.cookie("tokenAdmin", token, {
   httpOnly: true,
   secure: true,        // precisa ser true em produção (HTTPS)
   sameSite: "None",    // permite envio entre domínios diferentes
@@ -98,19 +98,21 @@ res.cookie("token", token, {
  * LOGOUT (USER + ADMIN)
  */
 export function logout(req, res) {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: false,
-    sameSite: "Lax",
-    path: "/"
-  });
+ res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+  path: "/"
+});
+;
 
-  res.clearCookie("tokenAdmin", {
-    httpOnly: true,
-    secure: false,
-    sameSite: "Lax",
-    path: "/"
-  });
+ res.cookie("tokenAdmin", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+  path: "/"
+});
+
 
   return res.status(200).json({ message: "Logout realizado" });
 }
