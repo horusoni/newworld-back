@@ -28,7 +28,7 @@ const PORT = 4444;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ["https://newworldcursos.vercel.app","https://maintain-cartridges-kings-guestbook.trycloudflare.com","https://ead.newworldcursos.com.br"], // 🔴 origem EXATA do front
+  origin: ["https://newworldcursos.vercel.app","https://psychiatry-notification-semiconductor-sends.trycloudflare.com","https://ead.newworldcursos.com.br"], // 🔴 origem EXATA do front
   credentials: true               // 🔴 obrigatório para cookies
 }));
 
