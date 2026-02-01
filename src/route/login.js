@@ -42,10 +42,12 @@ export async function login(req, res) {
 
  res.cookie("token", token, {
   httpOnly: true,
-  secure: true,        // precisa ser true em produção (HTTPS)
-  sameSite: "None",    // permite envio entre domínios diferentes
-  path: "/"
+  secure: true,
+  sameSite: "None",
+  path: "/",
+  maxAge: 1000 * 60 * 60 // 1 hora
 });
+
 
 
   const mail = formatEmail(email);
@@ -80,12 +82,14 @@ export async function loginAdmin(req, res) {
     { expiresIn: "1h" }
   );
 
-res.cookie("tokenAdmin", token, {
+res.cookie("token", token, {
   httpOnly: true,
-  secure: true,        // precisa ser true em produção (HTTPS)
-  sameSite: "None",    // permite envio entre domínios diferentes
-  path: "/"
+  secure: true,
+  sameSite: "None",
+  path: "/",
+  maxAge: 1000 * 60 * 60 // 1 hora
 });
+
 
 
   const mail = formatEmail(email);
