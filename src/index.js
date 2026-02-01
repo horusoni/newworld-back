@@ -27,10 +27,26 @@ const PORT = 4444;
 
 app.use(express.json());
 app.use(cookieParser());
+
+const allowedOrigins = [
+  "https://newworldcursos.vercel.app",
+  "https://psychiatry-notification-semiconductor-sends.trycloudflare.com",
+  "https://ead.newworldcursos.com.br"
+];
+
 app.use(cors({
-  origin: ["https://newworldcursos.vercel.app","https://psychiatry-notification-semiconductor-sends.trycloudflare.com","https://ead.newworldcursos.com.br"], // 🔴 origem EXATA do front
-  credentials: true               // 🔴 obrigatório para cookies
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // Postman, SSR, etc
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true
 }));
+
 
 app.get("/all-cursos", allCursos)
 
