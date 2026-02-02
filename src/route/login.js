@@ -82,7 +82,7 @@ export async function loginAdmin(req, res) {
     { expiresIn: "1h" }
   );
 
-res.cookie("token", token, {
+res.cookie("tokenAdmin", token, {
   httpOnly: true,
   secure: true,
   sameSite: "None",
