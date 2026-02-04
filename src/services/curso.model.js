@@ -49,7 +49,6 @@ export async function deleteAulaDb(id) {
     return db.collection("aula").deleteOne({ _id: new ObjectId(id) 
     })
 }
-
 //deleto todas as aulas
 
 export async function deleteAulaById(cursoId) {
@@ -68,8 +67,6 @@ export async function deleteAulaById(cursoId) {
 
     return { deleted: true };
 }
-
-
     
 export async function inserirAula(data){
     const db = await connectDB();
@@ -123,7 +120,6 @@ export async function listarInscricaoDB(userId, cursoId) {
              .toArray()
 }
 
-
 export async function allCursosDB() {
     const db = await connectDB()
 
@@ -132,9 +128,29 @@ export async function allCursosDB() {
         .toArray()
 }
 
-
 export async function desvincularCursoDb(inscId) {
     const db = await connectDB()
 
     return db.collection("inscricao").deleteOne({_id: new ObjectId(inscId)})
 }
+
+export async function editarCursoDB(dados) {
+  const db = await connectDB()
+  const cursoId = dados.cursoId
+
+  let data = {
+    titulo: dados.titulo,
+    desc: dados.desc,
+    materia: dados.materia,
+    tutor: dados.tutor,
+    capa: dados.capa,
+    preco: dados.preco,
+    carga_horaria: dados.carga_horaria
+  }
+
+  return db.collection("cursos").updateOne(
+    { _id: new ObjectId(cursoId) }, // filtro pelo _id
+    { $set: data }                  // atualiza os campos diretamente
+  )
+}
+

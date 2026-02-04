@@ -42,11 +42,21 @@ export async function login(req, res) {
 
  res.cookie("token", token, {
   httpOnly: true,
+  secure: false,
+  sameSite: "Lax",
+  path: "/",
+  maxAge: 1000 * 60 * 60 // 1 hora
+});
+
+/*
+   res.cookie("token", token, {
+  httpOnly: true,
   secure: true,
   sameSite: "None",
   path: "/",
   maxAge: 1000 * 60 * 60 // 1 hora
 });
+*/
 
 
 
@@ -84,11 +94,21 @@ export async function loginAdmin(req, res) {
 
 res.cookie("tokenAdmin", token, {
   httpOnly: true,
+  secure: false,
+  sameSite: "Lax",
+  path: "/",
+  maxAge: 1000 * 60 * 60 // 1 hora
+});
+
+/*
+ res.cookie("token", token, {
+  httpOnly: true,
   secure: true,
   sameSite: "None",
   path: "/",
   maxAge: 1000 * 60 * 60 // 1 hora
 });
+ */
 
 
 

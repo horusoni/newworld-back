@@ -1,4 +1,4 @@
-import { listarAluno, inserirAluno, deletarAlunoDb } from "../services/aluno.model.js"
+import { listarAluno, inserirAluno, deletarAlunoDb, editarAlunoDB } from "../services/aluno.model.js"
 import { ObjectId } from "mongodb"
 import { connectDB } from "../db/connect.js"
 import { inserirCurso, listarCurso, deleteCursoDb, inserirAula, listarAula, deleteAulaDb, inserirInscricao, desvincularCursoDb } from "../services/curso.model.js"
@@ -151,4 +151,11 @@ export async function desvincularCurso(req,res) {
     
     desvincularCursoDb(inscId)
     res.json({receivd:true})
+}
+
+
+export async function atualizarAluno(req,res) {
+    let dados = req.body.dados
+    editarAlunoDB(dados)
+    console.log(dados)
 }

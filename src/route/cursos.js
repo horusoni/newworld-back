@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb"
 import { connectDB } from "../db/connect.js"
-import { allCursosDB, listarAula, listarInscricaoDB } from "../services/curso.model.js"
+import { allCursosDB, editarCursoDB, listarAula, listarInscricaoDB } from "../services/curso.model.js"
 export async function meusCursos(req, res) {
 
   try {
@@ -62,9 +62,6 @@ export async function aulas(req, res) {
   }
 }
 
-
-
-
 export async function allCursos(req,res) {
   
   let cursos = await allCursosDB()
@@ -75,3 +72,8 @@ export async function allCursos(req,res) {
   res.status(200).json(cursos)
 }
 
+export async function editarCurso(req,res) {
+  let curso = req.body.curso
+  editarCursoDB(curso)
+  res.json({message:"Atualizado com sucesso!"})
+}

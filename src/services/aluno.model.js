@@ -102,3 +102,21 @@ async function cadastrarAdmin(data) {
         console.log(err)
     }
 }
+
+
+export async function editarAlunoDB(dados) {
+  const db = await connectDB()
+  const userId = dados.userId
+  let hash = cifrar(dados.senha)
+
+  let data = {
+    nome: dados.nome,
+    email: dados.email,
+    hash: hash,
+  }
+
+  return db.collection("aluno").updateOne(
+    { _id: new ObjectId(userId) }, // filtro pelo _id
+    { $set: data }                  // atualiza os campos diretamente
+  )
+}

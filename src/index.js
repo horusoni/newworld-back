@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { whoami, login, logout, loginAdmin } from "./route/login.js";
 
-import { meusCursos, aulas, allCursos } from "./route/cursos.js";
+import { meusCursos, aulas, allCursos, editarCurso } from "./route/cursos.js";
 import { auth, authAdmin } from "./route/middleware.js";
 import cookieParser from "cookie-parser";
 import { 
@@ -17,9 +17,11 @@ import {
     deletarAluno,
     meusCursosAdm,
     inserirVinculo,
-    desvincularCurso
+    desvincularCurso,
+    atualizarAluno
   } from "./route/admin.curso.js";
 import handler from "./route/certificado.js";
+import { financeiro } from "./route/admin.financeiro.js";
 
 
 const app = express();
@@ -30,7 +32,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "https://newworldcursos.vercel.app",
-  "https://psychiatry-notification-semiconductor-sends.trycloudflare.com",
+  "http://192.168.100.12:5500",
   "https://ead.newworldcursos.com.br"
 ];
 
@@ -49,10 +51,17 @@ app.use(cors({
 
 
 app.get("/all-cursos", allCursos)
+app.get("/financeiro", authAdmin, financeiro)
+
+app.get('/teste',(req,res)=> res.send({ok:"true"}))
+
+app.post("/login", (login));
+app.post("/login-admin", loginAdmin)
+app.post("/logout",logout)
 
 app.post("/meus-cursos" ,auth, meusCursos);
 app.post("/whoami", auth , whoami);
-app.post("/login", (login));
+
 app.post("/aulas", auth, aulas);
 app.post("/certificado", auth, handler)
 
@@ -76,10 +85,13 @@ app.post("/cursos-do-aluno",authAdmin, meusCursosAdm)
 app.post("/vincular-curso",authAdmin, inserirVinculo)
 app.post("/desvincular-curso",authAdmin, desvincularCurso)
 
-app.post("/login-admin", loginAdmin)
 
 
-app.get('/teste',(req,res)=> res.send({ok:"true"}))
+app.post("/editar-curso", editarCurso)
+
+app.post("/edit-user",atualizarAluno)
+
+
 
 app.post("/whoami-admin", authAdmin, (req, res) => {
   res.json({
@@ -89,7 +101,7 @@ app.post("/whoami-admin", authAdmin, (req, res) => {
 });
 
 
-app.post("/logout",logout)
+
 
 
 
