@@ -100,7 +100,7 @@ export async function loginAdmin(req, res) {
 });*/
 
 
- res.cookie("token", token, {
+ res.cookie("tokenAdmin", token, {
   httpOnly: true,
   secure: true,
   sameSite: "None",
