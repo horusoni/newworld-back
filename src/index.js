@@ -32,7 +32,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "https://newworldcursos.vercel.app",
-  "http://192.168.100.12:5500",
+//  "http://192.168.100.12:5500",
   "https://ead.newworldcursos.com.br"
 ];
 
