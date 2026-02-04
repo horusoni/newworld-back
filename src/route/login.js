@@ -40,15 +40,16 @@ export async function login(req, res) {
     { expiresIn: "1h" }
   );
 
- res.cookie("token", token, {
+/* res.cookie("token", token, {
   httpOnly: true,
   secure: false,
   sameSite: "Lax",
   path: "/",
   maxAge: 1000 * 60 * 60 // 1 hora
 });
+*/
 
-/*
+
    res.cookie("token", token, {
   httpOnly: true,
   secure: true,
@@ -56,7 +57,7 @@ export async function login(req, res) {
   path: "/",
   maxAge: 1000 * 60 * 60 // 1 hora
 });
-*/
+
 
 
 
@@ -66,9 +67,7 @@ export async function login(req, res) {
   return res.json({ login: true });
 }
 
-/**
- * LOGIN ADMIN
- */
+
 export async function loginAdmin(req, res) {
   const { email, senha } = req.body;
   const hash = cifrar(senha);
@@ -92,15 +91,15 @@ export async function loginAdmin(req, res) {
     { expiresIn: "1h" }
   );
 
-res.cookie("tokenAdmin", token, {
+/*res.cookie("tokenAdmin", token, {
   httpOnly: true,
   secure: false,
   sameSite: "Lax",
   path: "/",
   maxAge: 1000 * 60 * 60 // 1 hora
-});
+});*/
 
-/*
+
  res.cookie("token", token, {
   httpOnly: true,
   secure: true,
@@ -108,7 +107,7 @@ res.cookie("tokenAdmin", token, {
   path: "/",
   maxAge: 1000 * 60 * 60 // 1 hora
 });
- */
+ 
 
 
 
